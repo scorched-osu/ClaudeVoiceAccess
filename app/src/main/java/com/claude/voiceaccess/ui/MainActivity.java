@@ -145,11 +145,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void openAccessibilitySettings() {
         // Try root first
-        boolean rootGranted = RootCommandRunner.enableAccessibilityService(
+        RootCommandRunner.enableAccessibilityService(
                 "com.claude.voiceaccess/.service.ClaudeAccessibilityService");
-        if (!rootGranted) {
-            startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
-        }
+        // Also open settings so user can verify
+        startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS));
     }
 
     private void checkAndRequestPermissions() {

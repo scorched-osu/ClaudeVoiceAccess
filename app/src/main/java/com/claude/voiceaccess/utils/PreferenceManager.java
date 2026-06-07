@@ -2,7 +2,7 @@ package com.claude.voiceaccess.utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
+
 
 public class PreferenceManager {
 
@@ -17,7 +17,7 @@ public class PreferenceManager {
     private final SharedPreferences prefs;
 
     public PreferenceManager(Context context) {
-        prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        prefs = android.preference.PreferenceManager.getDefaultSharedPreferences(context);
     }
 
     public boolean isRequireVerbs() { return prefs.getBoolean(PREF_REQUIRE_VERBS, true); }

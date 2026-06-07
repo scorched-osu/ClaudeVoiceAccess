@@ -8,7 +8,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,13 +24,9 @@ public class PermissionSetupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_permission_setup);
 
-        if (getSupportActionBar() != null) {
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setTitle("Set up Claude Voice Access");
-        }
+        findViewById(R.id.btn_back).setOnClickListener(v -> finish());
 
         setupButtons();
-        // Try auto-grant via root
         autoGrantPermissions();
     }
 
@@ -55,30 +50,27 @@ public class PermissionSetupActivity extends AppCompatActivity {
 
     private void setupButtons() {
         Button btnAccessibility = findViewById(R.id.btn_grant_accessibility);
-        Button btnOverlay = findViewById(R.id.btn_grant_overlay);
-        Button btnMicrophone = findViewById(R.id.btn_grant_microphone);
-        Button btnDone = findViewById(R.id.btn_done);
+        Button btnOverlay       = findViewById(R.id.btn_grant_overlay);
+        Button btnMicrophone    = findViewById(R.id.btn_grant_microphone);
+        Button btnWriteSettings = findViewById(R.id.btn_grant_write_settings);
+        Button btnAutoGrant     = findViewById(R.id.btn_auto_grant_all);
 
-        btnAccessibility.setOnClickListener(v -> {
-            Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
-            startActivity(intent);
-        });
+        btnAccessibility.setOnClickListener(v ->
+            startActivity(new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS)));
 
-        btnOverlay.setOnClickListener(v -> {
-            Intent intent = new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-                    Uri.parse("package:" + getPackageName()));
-            startActivity(intent);
-        });
+        btnOverlay.setOnClickListener(v ->
+            startActivity(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
+                    Uri.parse("package:" + getPackageName()))));
 
-        btnMicrophone.setOnClickListener(v -> {
+        btnMicrophone.setOnClickListener(v ->
             ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.RECORD_AUDIO}, 100);
-        });
+                    new String[]{Manifest.permission.RECORD_AUDIO}, 100));
 
-        btnDone.setOnClickListener(v -> {
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        });
+        btnWriteSettings.setOnClickListener(v ->
+            startActivity(new Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS,
+                    Uri.parse("package:" + getPackageName()))));
+
+        btnAutoGrant.setOnClickListener(v -> autoGrantPermissions());
     }
 
     private void updatePermissionStatus() {
@@ -87,45 +79,35 @@ public class PermissionSetupActivity extends AppCompatActivity {
         boolean micEnabled = ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
                 == PackageManager.PERMISSION_GRANTED;
 
-        updateStatus(R.id.status_accessibility, R.id.btn_grant_accessibility, accessEnabled);
-        updateStatus(R.id.status_overlay, R.id.btn_grant_overlay, overlayEnabled);
-        updateStatus(R.id.status_microphone, R.id.btn_grant_microphone, micEnabled);
+        updateStatus(R.id.status_accessibility,  R.id.btn_grant_accessibility,  accessEnabled);
+        updateStatus(R.id.status_overlay,         R.id.btn_grant_overlay,         overlayEnabled);
+        updateStatus(R.id.status_microphone,      R.id.btn_grant_microphone,      micEnabled);
     }
 
     private void updateStatus(int statusId, int btnId, boolean granted) {
         ImageView status = findViewById(statusId);
         Button btn = findViewById(btnId);
         if (granted) {
-            status.setImageResource(android.R.drawable.ic_menu_close_clear_cancel);
-            status.setColorFilter(getColor(R.color.claude_accent));
+            status.setImageResource(android.R.drawable.checkbox_on_background);
+            status.setColorFilter(getColor(R.color.accent));
             btn.setEnabled(false);
-            btn.setText("Granted ✓");
+            btn.setText("Granted");
         } else {
             status.setImageResource(android.R.drawable.ic_dialog_alert);
-            status.setColorFilter(getColor(R.color.claude_red));
+            status.setColorFilter(getColor(R.color.error));
             btn.setEnabled(true);
         }
     }
 
     private boolean isAccessibilityEnabled() {
         try {
-            String enabledServices = Settings.Secure.getString(
+            String enabled = Settings.Secure.getString(
                     getContentResolver(), Settings.Secure.ENABLED_ACCESSIBILITY_SERVICES);
-            return enabledServices != null && enabledServices.contains("com.claude.voiceaccess");
+            return enabled != null && enabled.contains("com.claude.voiceaccess");
         } catch (Exception e) {
             return false;
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        updatePermissionStatus();
-    }
-
-    @Override
-    public boolean onSupportNavigateUp() {
-        finish();
-        return true;
-    }
+    @Override protected void onResume() { super.onResume(); updatePermissionStatus(); }
 }

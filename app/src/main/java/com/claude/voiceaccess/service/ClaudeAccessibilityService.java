@@ -734,7 +734,7 @@ public class ClaudeAccessibilityService extends AccessibilityService {
     public void startZooming() {
         isZooming = true;
         currentZoomLevel = 2.0f;
-        getMagnificationController().setScale(currentZoomLevel, -1, -1, true);
+        getMagnificationController().setScale(currentZoomLevel, true);
     }
 
     public void stopZooming() {
@@ -745,7 +745,7 @@ public class ClaudeAccessibilityService extends AccessibilityService {
 
     public void zoomIn() {
         currentZoomLevel = Math.min(currentZoomLevel + 0.5f, 8.0f);
-        getMagnificationController().setScale(currentZoomLevel, -1, -1, true);
+        getMagnificationController().setScale(currentZoomLevel, true);
     }
 
     public void zoomOut() {
@@ -753,7 +753,7 @@ public class ClaudeAccessibilityService extends AccessibilityService {
         if (currentZoomLevel == 1.0f) {
             stopZooming();
         } else {
-            getMagnificationController().setScale(currentZoomLevel, -1, -1, true);
+            getMagnificationController().setScale(currentZoomLevel, true);
         }
     }
 
