@@ -71,7 +71,7 @@
             android:id="@+id/wake_word_hint"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Say \"Hey Claude\" to activate"
+            android:text="Say Hey Claude to activate"
             android:textColor="@color/claude_on_surface_variant"
             android:textSize="14sp"
             android:gravity="center"
@@ -252,7 +252,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="\"Hey Claude\" — Activate\n\"Go back\" — Navigate back\n\"Scroll down\" — Scroll\n\"Tap [element]\" — Tap anything\n\"Type [text]\" — Enter text\n\"Stop listening\" — Deactivate"
+                    android:text="Hey Claude — Activate&#10;Go back — Navigate back&#10;Scroll down — Scroll&#10;Tap [element] — Tap anything&#10;Type [text] — Enter text&#10;Stop listening — Deactivate"
                     android:textColor="#BF360C"
                     android:textSize="12sp"
                     android:lineSpacingExtra="4dp" />
