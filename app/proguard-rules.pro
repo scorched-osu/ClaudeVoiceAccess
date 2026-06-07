@@ -1,0 +1,3 @@
+-keep class com.claude.voiceaccess.** { *; }
+-keepclassmembers class * extends android.accessibilityservice.AccessibilityService { *; }
+-keepclassmembers class * extends android.app.Service { *; }

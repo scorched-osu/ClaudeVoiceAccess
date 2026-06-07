@@ -1,0 +1,2 @@
+rootProject.name = "ClaudeVoiceAccess"
+include ':app'

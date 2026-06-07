@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Claude Voice Access</string>
+    <string name="voice_access_settings">Voice Access Settings</string>
+    <string name="voice_access_commands">Voice Access Commands</string>
+    <string name="open_tutorial">Voice Access Tutorial</string>
+    <string name="accessibility_service_description">Claude Voice Access enables full hands-free control of your Android device using voice commands, activated by saying Hey Claude.</string>
+    <string name="accessibility_service_summary">Control your device with voice commands</string>
+
+    <!-- Settings labels -->
+    <string name="require_verbs">Require verbs</string>
+    <string name="require_verbs_desc">Require verbs (e.g., "tap" or "open") for Voice Access commands</string>
+    <string name="timeout_no_speech">Time out after no speech</string>
+    <string name="timeout_no_speech_desc">Stop Voice Access after 30 seconds if no speech is detected</string>
+    <string name="listening_behavior">Listening behavior on screen wake up</string>
+    <string name="activate_incoming_calls">Activate for incoming calls</string>
+    <string name="activate_incoming_calls_desc">Turn on Voice Access when you get a phone call</string>
+    <string name="active_during_calls">Active during calls</string>
+    <string name="active_during_calls_desc">Keep Voice Access on during phone calls</string>
+    <string name="recognize_common_icons">Recognize common icons</string>
+    <string name="recognize_common_icons_desc">Detect the names of common icons, may use additional CPU and battery.</string>
+    <string name="configure_activation_key">Configure activation key</string>
+    <string name="configure_activation_key_desc">Configure a physical key/switch to control starting and stopping of Voice Access</string>
+
+    <!-- Status -->
+    <string name="listening">Listening…</string>
+    <string name="not_listening">Not listening</string>
+    <string name="say_hey_claude">Say "Hey Claude" to activate</string>
+    <string name="voice_access_on">Voice Access On</string>
+    <string name="voice_access_off">Voice Access Off</string>
+    <string name="tap_to_start">Tap to start Voice Access</string>
+
+    <!-- Notification -->
+    <string name="notification_channel_name">Claude Voice Access</string>
+    <string name="notification_channel_desc">Voice Access listening status</string>
+    <string name="notification_title">Claude Voice Access</string>
+    <string name="notification_text_listening">Listening for commands…</string>
+    <string name="notification_text_idle">Say "Hey Claude" to activate</string>
+
+    <!-- Tutorial -->
+    <string name="tutorial_basics_title">Learn the basics</string>
+    <string name="tutorial_icons_title">Learn icon names</string>
+    <string name="tutorial_text_title">Type and edit text</string>
+    <string name="tutorial_grid_title">Grid selection</string>
+    <string name="tutorial_help_title">Help</string>
+    <string name="previous">Previous</string>
+    <string name="continue_btn">Continue</string>
+    <string name="finish">Finish</string>
+    <string name="help_and_feedback">Help and feedback</string>
+
+    <!-- Commands categories -->
+    <string name="cat_basics_navigation">Basics and navigation</string>
+    <string name="cat_gestures">Gestures</string>
+    <string name="cat_grid_selection">Grid selection</string>
+    <string name="cat_text_editing">Text editing</string>
+    <string name="cat_magnification">Magnification</string>
+
+    <!-- Permissions -->
+    <string name="permission_accessibility">Accessibility permission required</string>
+    <string name="permission_overlay">Overlay permission required</string>
+    <string name="permission_microphone">Microphone permission required</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="setup_complete">Setup Complete</string>
+    <string name="setup_description">Claude Voice Access needs the following permissions to control your device hands-free.</string>
+</resources>
